@@ -46,7 +46,7 @@ public class AuthController {
     public String registerUser(@RequestBody AuthRequest authRequest) {
         
         if (userRepository.findByUsername(authRequest.getUsername()).isPresent()) {
-            return "user already exists"; //non lo registro
+            return "user already exists"; 
         }
 
         
@@ -56,7 +56,7 @@ public class AuthController {
         String encodedPassword = passwordEncoder.encode(authRequest.getPassword());
         newUser.setPassword(encodedPassword);
         Set<String> roles = new HashSet<>();
-        roles.add("USER"); //di default setto user
+        roles.add("USER"); // default user
         newUser.setRoles(roles);
         newUser.setEnabled(true);
 

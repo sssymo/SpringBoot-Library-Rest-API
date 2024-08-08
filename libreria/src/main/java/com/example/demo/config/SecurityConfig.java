@@ -28,19 +28,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())//disabilita la protezione CSRF (Cross-Site Request Forgery), sarebbe stata utile se avessi avuto un stateful
+        http.csrf(csrf -> csrf.disable())
                 .exceptionHandling(handling -> handling
-                        .authenticationEntryPoint(unauthorizedHandler)) //configuro il gestore delle eccezioni di autenticazione
+                        .authenticationEntryPoint(unauthorizedHandler)) 
                 .sessionManagement(management -> management
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //configuro la gestione delle sessioni come stateless
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()//Consente tutte le richieste agli endpoint che iniziano con /api/auth/ senza richiedere autenticazione
+                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/books/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()); //Richiede che tutte le altre richieste siano autenticate. 
+                        .anyRequest().authenticated()); 
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-//Il metodo addFilterBefore aggiunge un filtro specifico alla catena di filtri di Spring Security prima di un filtro esistente
-        return http.build(); //finalizza la configurazione
+
+        return http.build(); 
     }
     @Bean
     public PasswordEncoder passwordEncoder() {

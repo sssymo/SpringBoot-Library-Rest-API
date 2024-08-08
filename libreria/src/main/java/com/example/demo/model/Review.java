@@ -10,7 +10,7 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonBackReference //child
+    @JsonBackReference 
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;

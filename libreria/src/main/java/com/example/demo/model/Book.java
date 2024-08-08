@@ -58,7 +58,7 @@ public class Book {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-	@JsonManagedReference //parent
-	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true) //mappata in base ai libri i quali avranno reccensioni
+	@JsonManagedReference 
+	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true) 
     private List<Review> reviews;
 }

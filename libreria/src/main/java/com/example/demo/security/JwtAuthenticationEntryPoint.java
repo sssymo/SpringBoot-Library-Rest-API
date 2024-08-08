@@ -14,5 +14,5 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
-    } //questo mi garantisce che se non è autenticato sostanzialmente da l'errore 401 in durante una post
+    } 
 }
